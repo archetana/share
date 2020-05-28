@@ -1,0 +1,490 @@
+entity Client {
+	clientId Integer required,
+	clientName String maxlength(150),
+	clientActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required,
+	clientShortName String required maxlength(20)
+}
+
+entity ClientConfig {
+	clientConfigId Long required,
+	configActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required,
+	configValue Long required,
+	configSequence Integer
+}
+
+entity Event {
+	eventId Long required,
+	eventByType Integer required,
+	eventArchiveInd Boolean required,
+	eventDts Instant required,
+	eventById Long required,
+	eventForType Integer,
+	eventForId Long,
+	eventMessage String maxlength(500)
+}
+
+entity LevelMetadata {
+	levelMetadataId Integer required,
+	levelMetadataName String required maxlength(100),
+	levelMetadataActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required,
+	levelMetadataMasterInd Boolean required,
+	level Integer required
+}
+
+entity LkAttachmentType {
+	attachmentTypeId Integer required,
+	attachmentTypeName String maxlength(40),
+	attachmentTypeActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required
+}
+
+entity LkConfigType {
+	configTypeId Integer required,
+	configTypeName String maxlength(40),
+	configTypeActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required
+}
+
+entity LkControlType {
+	controlTypeId Integer required,
+	controlTypeName String maxlength(40),
+	controlTypeActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required
+}
+
+entity LkDomain {
+	domainId Integer required,
+	domainName String maxlength(40),
+	domainActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required,
+	domainMasterInd Boolean required
+}
+
+entity LkEventType {
+	eventTypeId Integer required,
+	eventTypeName String maxlength(40),
+	eventTypeActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required
+}
+
+entity LkLob {
+	lobId Integer required,
+	lobName String maxlength(40),
+	lobActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required,
+	lobMasterInd Boolean required
+}
+
+entity LkNoun {
+	nounId Integer required,
+	nounName String maxlength(40),
+	nounMasterInd Boolean required,
+	nounActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required
+}
+
+entity LkRegion {
+	regionId Integer required,
+	regionName String maxlength(40),
+	regionActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required,
+	regionMasterInd Boolean required
+}
+
+entity LkRole {
+	roleId Integer required,
+	roleName String maxlength(40),
+	roleInternalInd Boolean required,
+	roleActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required,
+	roleMasterInd Boolean required
+}
+
+entity LkStepType {
+	stepTypeId Integer required,
+	stepTypeName String maxlength(40),
+	stepTypeActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required
+}
+
+entity LkTechnology {
+	technologyId Integer required,
+	technologyName String maxlength(40),
+	technologyActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required,
+	technologyMasterInd Boolean required
+}
+
+entity LkVerb {
+	verbId Integer required,
+	verbName String maxlength(40),
+	verbMasterInd Boolean required,
+	verbActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required
+}
+
+entity LkWorkflowState {
+	workflowStateId Integer required,
+	workflowStateName String maxlength(40),
+	workflowStateActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required
+}
+
+entity Log {
+	logId Long required,
+	logEntity String maxlength(100),
+	logArchiveInd Boolean required,
+	logDts Instant required,
+	logUser String maxlength(100),
+	logType String maxlength(1),
+	logMethod String maxlength(100),
+	logMessage String maxlength(200),
+	logStack String maxlength(5000),
+	logLayer String maxlength(3)
+}
+
+entity Process {
+	processSetupId Integer required,
+	processName String maxlength(100),
+	processSetupActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required,
+	processSetupMasterInd Boolean required,
+	processLevel Integer required
+}
+
+entity Section {
+	sectionId Integer required,
+	sectionName String maxlength(100),
+	sectionActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required,
+	sectionMasterInd Boolean required
+}
+
+entity Sop {
+	sopId Integer required,
+	sopName String maxlength(100),
+	sopActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required,
+	sopCreatedDts Instant required,
+	sopCreatedBy Long required,
+	sopLatestVersionNumber BigDecimal required,
+	sopLatestVersionId Long required
+}
+
+entity SopAttachment {
+	sopAttachmentId Long required,
+	sopAttachmentActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required,
+	attachmentContent AnyBlob required,
+	attachmentName String required maxlength(100),
+	attachmentTranscript TextBlob,
+	sopAttachmentGeneratedInd Boolean required
+}
+
+entity SopVersion {
+	sopVersionId Integer required,
+	sopVersionActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required,
+	sopVersionCreatedDts Instant required,
+	sopVersionCreatedBy Long required,
+	sopVersionNumber BigDecimal required,
+	latestWorkflowStateId Boolean required
+}
+
+entity SopVersionHistory {
+	sopVersionHistoryId Integer required,
+	stateCompleteInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required,
+	stateInitiatedDts Instant required,
+	stateCompleteDts Instant,
+	stateInitiatedBy Long required,
+	stateCompletedBy Long
+}
+
+entity Step {
+	stepId Long required,
+	stepName String required maxlength(100),
+	stepActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required,
+	stepMasterInd Boolean required,
+	stepVerb String maxlength(30),
+	stepNoun String maxlength(40),
+	stepOtherInfo String maxlength(100),
+	roleId Integer required,
+	stepSequenceNumber Integer required,
+	stepParentId Long
+}
+
+entity StepAttachment {
+	stepAttachmentId Long required,
+	stepAttachmentActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required,
+	attachmentContent AnyBlob required,
+	attachmentName String required maxlength(100),
+	attachmentTranscript TextBlob
+}
+
+entity StepControl {
+	stepControlId Long required,
+	stepControlActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required,
+	controlType Integer required,
+	controlX BigDecimal required,
+	controlY BigDecimal required,
+	controlWidth BigDecimal required,
+	controlHeight BigDecimal required,
+	controlColor Long,
+	controlTextColor Long,
+	controlFontStyle String maxlength(100),
+	controlFontSize BigDecimal,
+	controlOptions String maxlength(500),
+	controlNavigationLink Long
+}
+
+entity StepImage {
+	stepImageId Long required,
+	stepImageActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required,
+	imagePath String maxlength(500),
+	stepDesc TextBlob,
+	stepVoiceDesc TextBlob,
+	imageContent AnyBlob required
+}
+
+entity User {
+	userId Integer required,
+	userFName String maxlength(40),
+	userLName String maxlength(100),
+	userEmail String maxlength(100),
+	userLogin String required maxlength(100),
+	userCredential String maxlength(500),
+	userActInd Boolean required,
+	lastUpdatedDts Instant required
+}
+
+entity XwClientUserRole {
+	clientUserRoleId Long required,
+	relActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required
+}
+
+entity XwDomainLob {
+	domainLobId Integer required,
+	relActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required
+}
+
+entity XwProcessHierarchy {
+	processId Integer required,
+	processActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required,
+	processSetupIdParent Integer
+}
+
+entity XwProcessMetadata {
+	processMetadataId Integer required,
+	processMetadataActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required
+}
+
+entity XwProcessStep {
+	processStepId Long required,
+	relActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required
+}
+
+entity XwSectionStep {
+	sectionStepId Long required,
+	relActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required
+}
+
+entity XwSopSection {
+	sopSectionId Long required,
+	relActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required
+}
+
+entity XwStepMetadata {
+	stepMetadataId Integer required,
+	stepMetadataActInd Boolean required,
+	lastUpdatedDts Instant required,
+	lastUpdateBy Long required,
+	metadataValue TextBlob
+}
+
+
+
+// Relations
+relationship ManyToOne {
+	ClientConfig{clientId required} to Client{clientConfig}
+}
+
+relationship ManyToOne {
+	ClientConfig{configTypeId required} to LkConfigType{clientConfig}
+}
+
+relationship ManyToOne {
+	Event{eventTypeId required} to LkEventType{event}
+}
+
+relationship ManyToOne {
+	Sop{processId} to XwProcessHierarchy{sop}
+}
+
+relationship ManyToOne {
+	Sop{clientId required} to Client{sop}
+}
+
+relationship ManyToOne {
+	SopAttachment{sopId required} to Sop{sopAttachment}
+}
+
+relationship ManyToOne {
+	SopAttachment{attachmentTypeId required} to LkAttachmentType{sopAttachment}
+}
+
+relationship ManyToOne {
+	SopVersion{sopId required} to Sop{sopVersion}
+}
+
+relationship ManyToOne {
+	SopVersionHistory{sopVersionId required} to SopVersion{sopVersionHistory}
+}
+
+relationship ManyToOne {
+	SopVersionHistory{workflowStateId required} to LkWorkflowState{sopVersionHistory}
+}
+
+relationship ManyToOne {
+	Step{stepTypeId required} to LkStepType{step}
+}
+
+relationship ManyToOne {
+	StepAttachment{stepId required} to Step{stepAttachment}
+}
+
+relationship ManyToOne {
+	StepAttachment{attachmentTypeId required} to LkAttachmentType{stepAttachment}
+}
+
+relationship ManyToOne {
+	StepControl{stepImageId required} to StepImage{stepControl}
+}
+
+relationship ManyToOne {
+	StepControl{controlTypeId required} to LkControlType{stepControl}
+}
+
+relationship ManyToOne {
+	StepImage{stepId required} to Step{stepImage}
+}
+
+relationship ManyToOne {
+	XwClientUserRole{clientId required} to Client{xwClientUserRole}
+}
+
+relationship ManyToOne {
+	XwClientUserRole{roleId required} to LkRole{xwClientUserRole}
+}
+
+relationship ManyToOne {
+	XwClientUserRole{userId required} to User{xwClientUserRole}
+}
+
+relationship ManyToOne {
+	XwDomainLob{domainId required} to LkDomain{xwDomainLob}
+}
+
+relationship ManyToOne {
+	XwDomainLob{lobId required} to LkLob{xwDomainLob}
+}
+
+relationship ManyToOne {
+	XwProcessHierarchy{processSetupId required} to Process{xwProcessHierarchy}
+}
+
+relationship ManyToOne {
+	XwProcessMetadata{processSetupId required} to Process{xwProcessMetadata}
+}
+
+relationship ManyToOne {
+	XwProcessMetadata{levelMetadataId required} to LevelMetadata{xwProcessMetadata}
+}
+
+relationship ManyToOne {
+	XwProcessStep{stepId required} to Step{xwProcessStep}
+}
+
+relationship ManyToOne {
+	XwProcessStep{processId required} to XwProcessHierarchy{xwProcessStep}
+}
+
+relationship ManyToOne {
+	XwSectionStep{stepId required} to Step{xwSectionStep}
+}
+
+relationship ManyToOne {
+	XwSectionStep{sopSectionId required} to XwSopSection{xwSectionStep}
+}
+
+relationship ManyToOne {
+	XwSopSection{sopId required} to Sop{xwSopSection}
+}
+
+relationship ManyToOne {
+	XwSopSection{sectionId required} to Section{xwSopSection}
+}
+
+relationship ManyToOne {
+	XwStepMetadata{processMetadataId required} to XwProcessMetadata{xwStepMetadata}
+}
+
+relationship ManyToOne {
+	XwStepMetadata{stepId required} to Step{xwStepMetadata}
+}
+
+
+
+// Options
+service * with serviceClass
+paginate * with pagination
+dto * with mapstruct
+filter *
+
